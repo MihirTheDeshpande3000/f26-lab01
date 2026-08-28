@@ -60,6 +60,13 @@ class BookingServiceTest {
     }
 
     @Test
+    void requestIntervalOverlapCheckIfFalse() {
+        BookingService svc = newService();
+        svc.book(roomA, alice, new TimeInterval(500, 900));
+        assertEquals(false, svc.isAvailable(roomA, new TimeInterval(600, 750)));
+    }
+
+    @Test
     void cancelBookingPromotesEligibleWaitlistedUser() {
         BookingService svc = newService();
         BookingResult.Confirmed initial = assertInstanceOf(BookingResult.Confirmed.class,
