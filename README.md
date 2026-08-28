@@ -24,4 +24,6 @@ By the way: the fix may not be where the failing test first points you. :-)
 - A proposed change you will review in Milestone 3: `changes/agent-attempt.patch` (the handout tells you how to apply it)
 - Transcript export script (for Claude Code; modify if using a different tool): `tools/export-transcripts.sh` (the handout tells you when to run it)
 
+I used the free ChatGPT Codex to the best of my ability which was running 5.6 Terra
+
 See the Lab 1 handout on the course page for the three milestones you show a TA.
