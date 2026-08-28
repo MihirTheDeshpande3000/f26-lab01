@@ -58,4 +58,18 @@ class BookingServiceTest {
         svc.book(roomA, bob, new TimeInterval(660, 720));
         assertEquals(2, svc.listBookings(roomA).size());
     }
+
+    @Test
+    void cancelBookingPromotesEligibleWaitlistedUser() {
+        BookingService svc = newService();
+        BookingResult.Confirmed initial = assertInstanceOf(BookingResult.Confirmed.class,
+                svc.book(roomA, alice, new TimeInterval(600, 660)));
+        assertInstanceOf(BookingResult.Waitlisted.class,
+                svc.book(roomA, bob, new TimeInterval(630, 700)));
+
+        svc.cancelBooking(initial.booking().id());
+
+        assertEquals(1, svc.listBookings(roomA).size());
+        assertEquals(bob, svc.listBookings(roomA).getFirst().user());
+    }
 }
